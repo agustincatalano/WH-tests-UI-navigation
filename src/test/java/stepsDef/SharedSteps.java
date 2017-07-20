@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import javax.swing.*;
 import java.util.*;
 
 /**
@@ -17,7 +16,6 @@ import java.util.*;
 public class SharedSteps {
 
     private static WebDriver driver;
-    private final String juegoResponsableLocator = "//a[contains(.,'Juego responsable')]";
     private final String topSportListLocator = "//div[@id='mainNavB']/ul[1]/li";
     private final String rnNavigationBarLocator = "//div[@id='rn_NavigationBar']/ul/li";
     DriverFactory driverFactory = new DriverFactory();
@@ -73,7 +71,11 @@ public class SharedSteps {
             if (elementFound) {
                 System.out.println("Element " + textLink + " in event " + event + " is displayed ");
                 linkCount++;
-            } else System.err.println("Element " + textLink + " in event " + event + " is  *NOT* displayed ");
+            } else {
+                System.err.println("Element " + textLink + " in event " + event + " is  *NOT* displayed ");
+                break;
+            }
+
         }
         if (topEventsNameList.size() == linkCount) {
             flag = true;
@@ -81,7 +83,8 @@ public class SharedSteps {
         return flag;
     }
 
-    public void validateJuegoResponsableonEachTopSport() {
+    public void validateJuegoResponsableonEachTopSport(String text) {
+        String juegoResponsableLocator = "//a[contains(.,'" + text + "')]";
         List<WebElement> topSortsWE = driver.findElements(By.xpath(topSportListLocator));
         //Stale element error on this method
 //            for (WebElement sport: topSortsWE) {

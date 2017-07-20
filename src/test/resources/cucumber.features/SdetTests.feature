@@ -27,7 +27,7 @@ Feature: WH SDET tests (junior)
     And I click on the link "Preguntas frecuentes"
     And I switch to next windows
     And I validate that the following URL is "https://williamhill-es.custhelp.com/app/answers/list"
-    And I add each link from the rn_navigation bar in a list
+    When I add each link from the rn_navigation bar in a list
     Then I validate that following links are present on the list
       |Preguntas Frecuentes|
       |Registro|
